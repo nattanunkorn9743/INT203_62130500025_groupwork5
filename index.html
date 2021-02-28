@@ -25,9 +25,30 @@
 <body>
   <div id="app" class="">
     <div class="mx-auto container">
-      <photo-search ></photo-search>
-      <photo-pre></photo-pre>
+      <photo-search :input="input" @searchfor-Picture='searchforPicture' ></photo-search>
+
+      <div v-if="preview.isShowPreview">
+        <photo-pre :preview="preview" ></photo-pre>
+      </div>
+     
+      
+
+      <div class="m-5">
+        <ul class="grid grid-cols-2 gap-y-10 ml-10 lg:grid-cols-5 flex">         
+          <li v-if="searchforPicture.length !==0" v-for="(photos, index) in searchforPicture">        
+            <photo-list :photos="photos" @preview-pic="previewPic"></photo-list>
+          </li>
+          <il v-else>
+            No photo
+          </il>
+        </ul>
+      </div>
+    
     </div>
+    </div>
+
+
+
 
   </div>
 
